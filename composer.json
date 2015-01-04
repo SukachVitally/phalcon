@@ -1,0 +1,26 @@
+{
+    "name": "phalcon/shops",
+    "type": "project",
+    "require": {
+        "php": ">=5.4.0",
+        "bower-asset/jquery": "*",
+        "bower-asset/bootstrap": "*",
+        "bower-asset/underscore": "*",
+        "bower-asset/backbone": "*",
+        "bower-asset/marionette": "*",
+        "bower-asset/spin.js": "*",
+        "bower-asset/marionette.backbone.syphon": "*",
+        "bower-asset/jquery-ui": "*",
+        "bower-asset/backbone.picky": "*",
+        "bower-asset/backbone.localStorage.forkedby.unkhz": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}
