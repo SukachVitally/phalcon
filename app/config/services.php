@@ -7,6 +7,7 @@ use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
+use App\Assets\Manager as AssetsManager;
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -30,7 +31,7 @@ $di->set('view', function () use ($config) {
 
     $view = new View();
 
-    $view->setViewsDir($config->application->viewsDir);
+    $view->setViewsDir(APP_PATH . $config->application->viewsDir);
 
     $view->registerEngines(array(
         '.volt' => function ($view, $di) use ($config) {
@@ -38,7 +39,7 @@ $di->set('view', function () use ($config) {
             $volt = new VoltEngine($view, $di);
 
             $volt->setOptions(array(
-                'compiledPath' => $config->application->cacheDir,
+                'compiledPath' => APP_PATH . $config->application->cacheDir,
                 'compiledSeparator' => '_'
             ));
 
@@ -77,4 +78,8 @@ $di->set('session', function () {
     $session->start();
 
     return $session;
+});
+
+$di->set('assets', function() {
+    return new AssetsManager();
 });
