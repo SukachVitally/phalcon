@@ -23,13 +23,21 @@ class Manager extends AssetManager {
         return $this->getBowerPackages()->get($name);
     }
 
+    public function collection($name) {
+        if( ! isset($this->_collections[$name])) {
+            $collection  = new Collection($name);
+            $this->_collections[$name] = $collection;
+        }
+        return $this->_collections[$name];
+    }
+
     public function addBowerJs($name)
     {
         $package = $this->getBowerPackage($name)->js;
 
         if ($package) {
-            foreach ($package->toArray() as $file) {
-                $this->addJs('vendor/js/' . $name . '.js');
+            foreach ($package->toArray() as $key => $file) {
+                $this->addJs('vendor/js/' . $key . '.js');
             }
         }
 
@@ -40,10 +48,9 @@ class Manager extends AssetManager {
     {
         $package = $this->getBowerPackage($name)->css;
 
-
         if ($package) {
-            foreach ($package->toArray() as $file) {
-                $this->addJs('vendor/css/' . $name . '.css');
+            foreach ($package->toArray() as $key => $file) {
+                $this->addCss('vendor/css/' . $key . '.css');
             }
         }
 

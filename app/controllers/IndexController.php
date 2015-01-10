@@ -12,7 +12,7 @@ class IndexController extends ControllerBase
         $this->assets->collection('header')
             ->addBowerJs('jquery');
 
-        $this->assets
+        $this->assets->collection('footer')
             ->addBowerJs('bootstrap')
             ->addBowerJs('spin')
             ->addBowerJs('jquery.spin')
