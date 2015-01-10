@@ -8,6 +8,7 @@ use Phalcon\Config\Adapter\Php as Adapter;
 class Manager extends AssetManager {
 
     private $_bowerFolder = 'vendor/bower/';
+    private $_vendorScriptFolder = 'public/vendor/';
 
     private $_bowerConfig;
 
