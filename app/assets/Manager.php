@@ -8,7 +8,6 @@ use Phalcon\Config\Adapter\Php as Adapter;
 class Manager extends AssetManager {
 
     private $_bowerFolder = 'vendor/bower/';
-    private $_vendorScriptFolder = 'public/vendor/';
 
     private $_bowerConfig;
 
@@ -23,28 +22,31 @@ class Manager extends AssetManager {
         return $this->getBowerPackages()->get($name);
     }
 
-    public function addBowerJs($name) {
+    public function addBowerJs($name)
+    {
         $package = $this->getBowerPackage($name)->js;
 
-        if (!$package) {
-            return;
+        if ($package) {
+            foreach ($package->toArray() as $file) {
+                $this->addJs('vendor/js/' . $name . '.js');
+            }
         }
 
-        foreach ($package->toArray() as $file) {
-            $this->addJs('vendor/' . $name . $file . '.js');
-        }
+        return $this;
     }
 
-    public function addBowerCss($name) {
+    public function addBowerCss($name)
+    {
         $package = $this->getBowerPackage($name)->css;
 
-        if (!$package) {
-            return;
+
+        if ($package) {
+            foreach ($package->toArray() as $file) {
+                $this->addJs('vendor/css/' . $name . '.css');
+            }
         }
 
-        foreach ($package->toArray() as $file) {
-            $this->addJs('vendor/' . $name . $file . '.css');
-        }
+        return $this;
     }
 
     public function removeVendorFolder() {
@@ -53,12 +55,18 @@ class Manager extends AssetManager {
 
     public function createBowerPackages() {
         $packages = $this->getBowerPackages()->toArray();
+        mkdir(APP_PATH.$this->_vendorScriptFolder);
         foreach($packages as $package) {
             foreach($package as $type => $names) {
                 foreach($names as $key => $path) {
-                    var_dump(
-                        APP_PATH.$this->_bowerFolder.$path.$type,
-                        APP_PATH.$this->_vendorScriptFolder.$type.$key
+                    var_dump([
+                        'from' => APP_PATH.$this->_bowerFolder.$path.'.'.$type,
+                        'to' => APP_PATH.$this->_vendorScriptFolder.$type.'/'.$key.'.'.$type
+                    ]);
+                    mkdir(APP_PATH.$this->_vendorScriptFolder.$type);
+                    copy(
+                        APP_PATH.$this->_bowerFolder.$path.'.'.$type,
+                        APP_PATH.$this->_vendorScriptFolder.$type.'/'.$key.'.'.$type
                     );
                 }
 

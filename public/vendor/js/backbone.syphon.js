@@ -1,1 +1,0 @@
-/var/vhosts/phalcon2/vendor/bower/marionette.backbone.syphon/lib/backbone.syphon.js

@@ -1,1 +1,0 @@
-/var/vhosts/phalcon2/vendor/bower/spin.js/jquery.spin.js
