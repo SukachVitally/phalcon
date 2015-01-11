@@ -6,22 +6,22 @@ class IndexController extends ControllerBase
     public function indexAction()
     {
         $this->assets
-            ->addCss('vendor/css/bootstrap.css')
+            ->addBowerCss('bootstrap')
             ->addCss('css/main.css');
 
         $this->assets->collection('header')
-            ->addJs('vendor/js/jquery.min.js');
+            ->addBowerJs('jquery');
 
         $this->assets->collection('footer')
-            ->addJs('vendor/js/bootstrap.js')
-            ->addJs('vendor/js/spin.js')
-            ->addJs('vendor/js/jquery.spin.js')
-            ->addJs('vendor/js/underscore.js')
-            ->addJs('vendor/js/backbone.js')
-            ->addJs('vendor/js/backbone.picky.min.js')
-            ->addJs('vendor/js/backbone.localStorage-min.js')
-            ->addJs('vendor/js/backbone.syphon.js')
-            ->addJs('vendor/js/backbone.marionette.js')
+            ->addBowerJs('bootstrap')
+            ->addBowerJs('spin')
+            ->addBowerJs('jquery.spin')
+            ->addBowerJs('underscore')
+            ->addBowerJs('backbone')
+            ->addBowerJs('backbone.picky')
+            ->addBowerJs('backbone.localStorage')
+            ->addBowerJs('backbone.syphon')
+            ->addBowerJs('backbone.marionette')
             ->addJs('js/apps/config/marionette/templateCache.js')
             ->addJs('js/app.js')
             ->addJs('js/templates/templates.js')
