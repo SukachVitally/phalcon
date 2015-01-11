@@ -14,6 +14,7 @@ $loader->registerDirs(
 
 $loader->registerNamespaces(
     array(
-        'App\Assets' => APP_PATH . $config->application->assetsDir
+        'App\Assets' => APP_PATH . $config->application->assetsDir,
+        'App\Models' => APP_PATH . $config->application->modelsDir
     )
 );
