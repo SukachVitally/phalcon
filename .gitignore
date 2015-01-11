@@ -2,3 +2,4 @@ app/cache
 .idea
 vendor
 composer.lock
+.phalcon

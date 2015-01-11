@@ -13,12 +13,17 @@ try {
     /**
      * Read auto-loader
      */
-    include APP_PATH  . "app/config/loader.php";
+    require APP_PATH  . "app/config/loader.php";
+
+    /**
+     * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
+     */
+    $di = new \Phalcon\DI\FactoryDefault();
 
     /**
      * Read services
      */
-    include APP_PATH . "app/config/services.php";
+    require APP_PATH . "app/config/services.php";
 
     /**
      * Handle the request
