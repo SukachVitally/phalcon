@@ -16,12 +16,12 @@ $config = new Phalcon\Config\Adapter\Ini(APP_PATH . 'app/config/config.ini');
 /**
  * Read loader
  */
-require APP_PATH . "app/config/loaderCli.php";
+require APP_PATH . "app/config/loader.php";
 
 /**
  * Read services
  */
-require APP_PATH . "app/config/servicesCli.php";
+require APP_PATH . "app/config/services.php";
 
 //Create a console application
 $console = new ConsoleApp();
