@@ -3,25 +3,12 @@
 namespace App\Assets;
 
 use Phalcon\Assets\Manager as AssetManager;
-use Phalcon\Config\Adapter\Php as Adapter;
 
 class Manager extends AssetManager {
+    use BowerTrait;
 
     private $_bowerFolder = 'vendor/bower/';
     private $_vendorScriptFolder = 'public/vendor/';
-
-    private $_bowerConfig;
-
-    public function getBowerPackages() {
-        if($this->_bowerConfig === NULL) {
-            $this->_bowerConfig = new Adapter(APP_PATH . 'app/config/bower.php');
-        }
-        return $this->_bowerConfig;
-    }
-
-    public function getBowerPackage($name) {
-        return $this->getBowerPackages()->get($name);
-    }
 
     public function collection($name) {
         if( ! isset($this->_collections[$name])) {
@@ -29,32 +16,6 @@ class Manager extends AssetManager {
             $this->_collections[$name] = $collection;
         }
         return $this->_collections[$name];
-    }
-
-    public function addBowerJs($name)
-    {
-        $package = $this->getBowerPackage($name)->js;
-
-        if ($package) {
-            foreach ($package->toArray() as $key => $file) {
-                $this->addJs('vendor/js/' . $key . '.js');
-            }
-        }
-
-        return $this;
-    }
-
-    public function addBowerCss($name)
-    {
-        $package = $this->getBowerPackage($name)->css;
-
-        if ($package) {
-            foreach ($package->toArray() as $key => $file) {
-                $this->addCss('vendor/css/' . $key . '.css');
-            }
-        }
-
-        return $this;
     }
 
     public function removeVendorFolder() {
