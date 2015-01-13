@@ -79,3 +79,9 @@ $di->set('assets', function() {
 });
 
 $di->set('config', $config);
+
+$di->set('router', function() {
+    $router = new \Phalcon\Mvc\Router();
+    require APP_PATH  . "app/config/routing.php";
+    return $router;
+});

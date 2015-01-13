@@ -1,9 +1,9 @@
 ShopManager.module "Entities", (Entities, ContactManager, Backbone, Marionette, $, _)->
   class Entities.Product extends  Backbone.Model
-    urlRoot: "shop/products"
+    urlRoot: "/product"
 
   class Entities.ProductCollection extends Backbone.Collection
-    url: "shop/products"
+    url: "/products"
     model: Entities.Product
 
   API =
